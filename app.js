@@ -4,7 +4,7 @@ import express from "express";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { exampleRouter } from "./routes/example-router.js";
+import { messageRouter } from "./routes/message-router.js";
 import { indexRouter } from "./routes/index-router.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -23,7 +23,7 @@ app.use(express.static(join(__dirname, "public")));
 
 /* routes */
 app.use("/", indexRouter);
-app.use("/example", exampleRouter);
+app.use("/new", messageRouter);
 
 /* error handler */
 app.use((err, req, res, next) => {
