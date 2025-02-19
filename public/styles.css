@@ -122,8 +122,6 @@ main {
   }
 
   & > form {
-    /* border: 2px solid white; */
-
     & > div {
       display: flex;
       flex-direction: column;
@@ -189,6 +187,11 @@ main {
       color: var(--input-text-color);
     }
   }
+}
+
+.r1, .r2 {
+  visibility: hidden;
+  color: var(--primary-accent-color);
 }
 
 @media (max-width: 400px) {
