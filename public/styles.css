@@ -80,7 +80,41 @@ nav {
 main {
   width: clamp(400px, 60vw, 800px);
 
-  & > div {
+  & > .error {
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    padding: 2rem 0;
+
+    & > p:first-of-type {
+      font-size: 3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1ch;
+
+      & > span:first-of-type {
+        color: var(--secondary-accent-color);
+      }
+
+      & > span:last-of-type {
+        color: var(--input-text-color);
+      }
+    }
+
+    & > svg {
+      margin-top: 2rem;
+      width: 6rem;
+      height: 6rem;
+
+      stroke-width: 1;
+      stroke: var(--input-text-color);
+    }
+  }
+
+  & > div:not(.error) {
     border-bottom: 1px dashed;
     margin-bottom: 1.2rem;
     padding: 0 0.5rem 1rem;

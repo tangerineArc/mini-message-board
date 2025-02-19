@@ -28,10 +28,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", indexRouter);
 app.use("/new", messageRouter);
 
-/* error handler */
-app.use((err, req, res, next) => {
-  console.error(err);
-  res.status(err.statusCode || 500).send(err.message);
+/* error 404 */
+app.all("*", (req, res) => {
+  res.status(404).render("error.ejs");
 });
 
 /* startup */
