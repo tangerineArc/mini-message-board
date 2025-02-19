@@ -1,3 +1,5 @@
+"use strict";
+
 export default function getColor(name) {
   const COLORS = [
     "#ffc2d1",

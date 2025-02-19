@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="/styles.css">
 
   <title>Message Board</title>
 </head>
@@ -38,6 +38,10 @@
       </div>
     <% }) %>
   </main>
+
+  <script>
+    window.history.pushState({}, document.title, window.location.pathname);
+  </script>
 </body>
 
 </html>

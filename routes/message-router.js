@@ -1,19 +1,27 @@
 "use strict";
 
 import { Router } from "express";
+import url from "node:url";
 
-import { getMessageById } from "../controllers/message-controller.js";
+import formatDate from "../utils/format-date.js";
+import getColor from "../utils/get-color.js";
 
 const messageRouter = Router();
 
 messageRouter.get("/", (req, res) => {
-  res.send("Render form to create a new message");
+  res.render("post-message.ejs", { selectedTab: "new" });
 });
 
 messageRouter.post("/", (req, res) => {
-  res.send("Posted a new message");
-});
+  const { user, text } = req.body;
+  const message = {
+    text: encodeURIComponent(text),
+    user: encodeURIComponent(user),
+    color: encodeURIComponent(getColor(user)),
+    added: encodeURIComponent(formatDate(new Date())),
+  };
 
-messageRouter.get("/:messageId", getMessageById);
+  res.redirect(url.format({ pathname: "/", query: message }));
+});
 
 export { messageRouter };
