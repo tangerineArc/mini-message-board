@@ -5,6 +5,9 @@
 import "dotenv/config";
 import pg from "pg";
 
+const { native } = pg;
+const { Client } = native;
+
 const SQL = `
 DELETE FROM messages;
 
@@ -50,8 +53,11 @@ VALUES
 async function main() {
   console.log("seeding started ...");
 
-  const client = new pg.Client({
+  const client = new Client({
     connectionString: process.env.DB_CONNECTION_URL,
+    ssl: {
+      rejectUnauthorized: false,
+    },
   });
 
   await client.connect();
