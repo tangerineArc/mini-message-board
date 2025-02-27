@@ -17,7 +17,7 @@
   --primary-accent-color: #ef233c;
   --secondary-accent-color: #edf2f4;
 
-  --input-background-color: #231942;
+  --input-background-color: #23194266;
   --input-border-color: #5e548e;
   --input-text-color: #e0b1cb;
 }
@@ -155,6 +155,36 @@ main {
     }
   }
 
+  & > ul {
+    /* border: 2px solid; */
+    list-style: none;
+
+    margin-bottom: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+
+    color: var(--primary-accent-color);
+
+    & > li {
+      border: 1px solid #ef233c66;
+      border-radius: 5px;
+      background-color: #ef233c33;
+      padding: 1rem;
+
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      & > svg {
+        width: 1.4rem;
+        height: 1.4rem;
+      }
+    }
+
+  }
+
   & > form {
     & > div {
       display: flex;
@@ -199,8 +229,8 @@ main {
 
       font-size: inherit;
       font-family: inherit;
-      background-color: var(--input-border-color);
-      color: var(--secondary-accent-color);
+      background-color: #5e548e44;
+      color: var(--input-text-color);
 
       padding: 0.8rem 1rem;
       border-radius: 5px;
@@ -218,7 +248,7 @@ main {
     }
 
     & > button:hover {
-      color: var(--input-text-color);
+      background-color: #5e548e66;
     }
   }
 }

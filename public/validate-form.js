@@ -1,5 +1,5 @@
 (() => {
-  const userInputField = document.querySelector("#user");
+  const userInputField = document.querySelector("#username");
   const messageInputField = document.querySelector("#text");
 
   document.querySelector("form").addEventListener("submit", (event) => {
