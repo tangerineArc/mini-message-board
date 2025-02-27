@@ -156,7 +156,6 @@ main {
   }
 
   & > ul {
-    /* border: 2px solid; */
     list-style: none;
 
     margin-bottom: 2rem;

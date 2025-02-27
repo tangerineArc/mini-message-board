@@ -20,7 +20,7 @@ const getAllMessages = asyncHandler(async (req, res) => {
 });
 
 const renderNewMessageForm = (req, res) => {
-  res.render("post-message.ejs", { selectTab: "new" });
+  res.render("post-message.ejs", { selectedTab: "new" });
 };
 
 const validateMessage = [
@@ -42,6 +42,7 @@ const postMessage = [
       return res
         .status(400)
         .render("post-message.ejs", {
+          selectedTab: "new",
           errors: errors.array().map((err) => err.msg),
         });
     }
