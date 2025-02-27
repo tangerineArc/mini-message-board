@@ -1,11 +1,11 @@
 "use strict";
 
+import "dotenv/config";
 import express from "express";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { messageRouter } from "./routes/message-router.js";
-import { indexRouter } from "./routes/index-router.js";
+import indexRouter from "./routes/index-router.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -26,11 +26,17 @@ app.use(express.urlencoded({ extended: true }));
 
 /* routes */
 app.use("/", indexRouter);
-app.use("/new", messageRouter);
+app.use("/new", indexRouter);
 
 /* error 404 */
 app.all("*", (req, res) => {
   res.status(404).render("error.ejs");
+});
+
+/* async errors */
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(err.statusCode || 500).send(err.message);
 });
 
 /* startup */

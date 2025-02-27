@@ -1,47 +1,68 @@
-import formatDate from "./utils/format-date.js";
-import getColor from "./utils/get-color.js";
+#! /usr/bin/env node
 
-export const messages = [
-  {
-    text: "Gentlemen, welcome to Fight Club. The first rule of Fight Club is: you do not talk about Fight Club. The second rule of Fight Club is: you DO NOT talk about Fight Club!",
-    user: "Tyler Durden",
-    color: getColor("Tyler Durden"),
-    added: formatDate(new Date()),
-  },
-  {
-    text: "I am your father.",
-    user: "Darth Vader",
-    color: getColor("Darth Vader"),
-    added: formatDate(new Date()),
-  },
-  {
-    text: "I used to think that my life was a tragedy, but now I realize it's a fucking comedy.",
-    user: "Arthur Fleck",
-    color: getColor("Arthur Fleck"),
-    added: formatDate(new Date()),
-  },
-  {
-    text: "Why so serious?",
-    user: "The Joker",
-    color: getColor("The Joker"),
-    added: formatDate(new Date()),
-  },
-  {
-    text: "Yeah, well, that's just, like, your opinion, man.",
-    user: "The Dude",
-    color: getColor("The Dude"),
-    added: formatDate(new Date()),
-  },
-  {
-    text: "So you're telling me there's a chance?",
-    user: "Lloyd Christmas",
-    color: getColor("Lloyd Christmas"),
-    added: formatDate(new Date()),
-  },
-  {
-    text: "You can't handle the truth!",
-    user: "Colonel Nathan R. Jessup",
-    color: getColor("Colonel Nathan R. Jessup"),
-    added: formatDate(new Date()),
-  },
-];
+"use strict";
+
+import "dotenv/config";
+import pg from "pg";
+
+const SQL = `
+CREATE TABLE IF NOT EXISTS messages (
+  text TEXT NOT NULL,
+  username TEXT NOT NULL,
+  added TIMESTAMPTZ NOT NULL
+);
+
+INSERT INTO messages (text, username, added)
+VALUES
+  (
+    'Gentlemen, welcome to Fight Club. The first rule of Fight Club is: you do not talk about Fight Club. The second rule of Fight Club is: you DO NOT talk about Fight Club!',
+    'Tyler Durden',
+    '${new Date().toISOString()}'
+  ),
+  (
+    'I am your father.',
+    'Darth Vader',
+    '${new Date().toISOString()}'
+  ),
+  (
+    'I used to think that my life was a tragedy, but now I realize it''s a fucking comedy.',
+    'Arthur Fleck',
+    '${new Date().toISOString()}'
+  ),
+  (
+    'Why so serious?',
+    'The Joker',
+    '${new Date().toISOString()}'
+  ),
+  (
+    'Yeah, well, that''s just, like, your opinion, man.',
+    'The Dude',
+    '${new Date().toISOString()}'
+  ),
+  (
+    'So you''re telling me there''s a chance?',
+    'Lloyd Christmas',
+    '${new Date().toISOString()}'
+  ),
+  (
+    'You can''t handle the truth!',
+    'Colonel Nathan R. Jessup',
+    '${new Date().toISOString()}'
+  );
+`;
+
+async function main() {
+  console.log("seeding started ...");
+
+  const client = new pg.Client({
+    connectionString: process.env.DB_CONNECTION_URL,
+  });
+
+  await client.connect();
+  await client.query(SQL);
+  await client.end();
+
+  console.log("... seeding finished");
+}
+
+main();
