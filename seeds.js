@@ -12,6 +12,8 @@ CREATE TABLE IF NOT EXISTS messages (
   added TIMESTAMPTZ NOT NULL
 );
 
+DELETE FROM messages;
+
 INSERT INTO messages (text, username, added)
 VALUES
   (
