@@ -10,6 +10,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "node --watch app.js",
+    "dwell": "node pasture.js",
     "sow": "node seeds.js"
   },
   "keywords": [],

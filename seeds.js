@@ -6,12 +6,6 @@ import "dotenv/config";
 import pg from "pg";
 
 const SQL = `
-CREATE TABLE IF NOT EXISTS messages (
-  text TEXT NOT NULL,
-  username TEXT NOT NULL,
-  added TIMESTAMPTZ NOT NULL
-);
-
 DELETE FROM messages;
 
 INSERT INTO messages (text, username, added)
